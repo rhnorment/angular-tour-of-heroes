@@ -20,13 +20,17 @@ import { HeroService } from './hero.service';
         pathMatch: 'full'
       },
       {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+      {
         path: 'heroes',
         component: HeroesComponent
       },
       {
-        path: 'dashboard',
-        component: DashboardComponent
-      }
+        path: 'detail/:id',
+        component: HeroDetailComponent
+      },
     ])
   ],
   declarations: [
