@@ -2,7 +2,7 @@
  * Created by rhnorment on 12/4/16.
  */
  import 'rxjs/add/operator/switchMap';
- import { Component, Input, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
  import { ActivatedRoute, Params } from '@angular/router';
  import { Location } from '@angular/common';
  
@@ -28,6 +28,10 @@
     this.route.params
       .switchMap((params: Params) => this.heroService.getHero(+params['id']))
       .subscribe(hero => this.hero = hero);
+  }
+
+  save(): void {
+    this.heroService.update(this.hero).then(() => this.goBack());
   }
 
   goBack(): void {
