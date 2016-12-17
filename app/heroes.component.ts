@@ -19,7 +19,21 @@ export class HeroesComponent implements OnInit {
     private heroService: HeroService) {}
 
   getHeroes(): void {
-    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+    this.heroService
+      .getHeroes()
+      .then(heroes => this.heroes = heroes);
+  }
+
+  add(name: string): void {
+    name = name.trim();
+
+    if (!name) { return; }
+
+    this.heroService.create(name)
+      .then(hero => {
+        this.heroes.push(hero);
+        this.selectedHero = null;
+      });
   }
 
   ngOnInit(): void {
@@ -31,7 +45,8 @@ export class HeroesComponent implements OnInit {
   }
 
   goToDetail(): void {
-    this.router.navigate(['/detail', this.selectedHero.id]);
+    this.router
+      .navigate(['/detail', this.selectedHero.id]);
   }
 }
 
